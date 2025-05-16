@@ -1,63 +1,68 @@
-let shoppingList = [];
-
-// Add item if not duplicate
-function addItem(item) {
-  const lowerItem = item.toLowerCase();
-  const exists = shoppingList.some(existing => existing.toLowerCase() === lowerItem);
-
-  if (!exists) {
-    shoppingList.push(item);
-  } else {
-    alert("This item already exists!");
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #d4fc79, #96e6a1); /* ألوان ربيعية */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-// Add item from input field
-function addItemFromInput() {
-  const input = document.getElementById("itemInput");
-  const newItem = input.value.trim();
-
-  if (newItem !== "") {
-    addItem(newItem);
-    input.value = "";
-    displayList(shoppingList);
-  }
+main {
+  background-color: #ffffffee;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
 }
 
-// Remove last item and update display
-function removeLastItem() {
-  if (shoppingList.length > 0) {
-    shoppingList.pop();
-    displayList(shoppingList);
-  }
+h1 {
+  color: #2f855a;
+  margin-bottom: 1rem;
 }
 
-// Display the list in the UL element
-function displayList(listToShow) {
-  const listDisplay = document.getElementById("listDisplay");
-  listDisplay.innerHTML = "";
-
-  if (listToShow.length === 0) {
-    const li = document.createElement("li");
-    li.textContent = "The list is empty.";
-    li.style.color = "gray";
-    listDisplay.appendChild(li);
-    return;
-  }
-
-  listToShow.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    listDisplay.appendChild(li);
-  });
+h2 {
+  color: #276749;
+  margin-top: 1.5rem;
 }
 
-// filter and display results
-function filterItems() {
-  const searchValue = document.getElementById("searchInput").value.trim();
-  const filtered = shoppingList.filter(item =>
-    item.toLowerCase().includes(searchValue.toLowerCase())
-  );
+input[type="text"] {
+  width: 80%;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  border: 2px solid #9ae6b4;
+  border-radius: 8px;
+  font-size: 1rem;
+}
 
-  displayList(filtered);
+button {
+  background-color: #38a169;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2f855a;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f0fff4;
+  margin: 0.4rem 0;
+  padding: 0.6rem;
+  border: 1px solid #c6f6d5;
+  border-radius: 6px;
 }
